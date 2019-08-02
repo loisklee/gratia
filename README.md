@@ -29,7 +29,7 @@ At the index page, you can sign up, log in or learn about the app. Once logged i
 
 ## Development
 
-After checking out the repo, run `bundle install' to install dependencies. Use shotgun to test your work. 
+After checking out the repo, run `bundle install` to install dependencies. Use shotgun to test your work. 
 
 ## Contributing
 
