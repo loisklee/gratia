@@ -1,1 +1,91 @@
-<h1>This is the show page for an individual instance of your model.</h1>
+<div class="wrapper">
+
+<div class="banner">
+        <h2> on this day </h2>
+</div>
+
+    <h3><%= @entry_date %></h3>
+    <hr>
+    <%if !@entry.thoughts.empty?  %>
+        <h4>free-flow thoughts from today</h4>
+        <h5><%= @entry.thoughts %><br></h5>
+    <%end%>
+
+    <br>
+    <hr width="25%">
+    <%if !@entry.gratitude1.empty? %>
+        <h4>i am grateful for:</h4>
+        <h5>
+        &bull; <%= @entry.gratitude1 %><br><br>
+        &bull; <%= @entry.gratitude2 %><br><br>
+        &bull; <%= @entry.gratitude3 %><br><br>
+        &bull; <%= @entry.gratitude4 %><br><br>
+        &bull; <%= @entry.gratitude5 %><br><br>
+        &bull; <%= @entry.gratitude6 %><br><br>
+        &bull; <%= @entry.gratitude7 %><br><br>
+        &bull; <%= @entry.gratitude8 %><br><br>
+        &bull; <%= @entry.gratitude9 %><br><br>
+        &bull; <%= @entry.gratitude10 %><br><br>
+        </h5>
+    <%end%>
+
+    <br>
+    <hr width="25%">
+
+    <%if !@entry.reflection1.empty? %>
+        <h4>i felt unfree when: </h4>
+        <h5>
+        &bull;  <%= @entry.reflection1 %><br><br>
+        &bull;  <%= @entry.reflection2 %><br><br>
+        &bull;  <%= @entry.reflection3 %><br><br>
+        &bull;  <%= @entry.reflection4 %><br><br>
+        &bull;  <%= @entry.reflection5 %><br><br>
+        <h6> if there are things wrong, in my life and in me, i face up to them. <br><br> i ask for healing and forgiveness for these failings. </h6>
+
+        </h5>
+    <%end%>
+
+    <br>
+    <hr width="25%">
+
+        <h4>i hope tomorrow: </h4>
+        <h5>
+        &bull;   <%= @entry.hopes1 %><br><br>
+        &bull;   <%= @entry.hopes2 %><br><br>
+        &bull;   <%= @entry.hopes3 %><br><br>
+        &bull;   <%= @entry.hopes4 %><br><br>
+        &bull;   <%= @entry.hopes5 %><br><br>
+
+        </h5>
+    <br>
+    <div class="box">
+        <p>
+            to You, the Source of Life and all that is good and beautiful in my life: <br><br>
+            i thank You that You have safely brought me to the end of this day. <br><br>
+            grant me the serenity to accept the things i cannot change, <br>the courage to change the things i can, <br>and the wisdom to know the difference. <br><br> protect me from the perils and dangers of the night. 
+        </p>
+    </div> 
+    <br>
+    <br>
+    <br>
+
+    <form action="/entries/<%=@entry.id%>/edit" method="GET">
+        <input type="submit" name="edit" value="Edit Entry" class = "button width">
+    </form>
+
+    <form action="/entries/<%=@entry.id%>/delete" method="POST">
+        <input id="hidden" type="hidden" name="_method" value="DELETE">
+        <input type="submit" name="delete" value="Delete Entry" class = "button width"> 
+    </form>
+
+    <hr>
+    <h5>
+        <div class="right">
+            <a class ="foot" href="/welcome">Home</a>
+            <a class ="foot" href="/collection">See Collection</a>
+            <a class ="foot" href="/logout">Log Off</a>
+        </div>
+    </h5>
+</div>
+
+

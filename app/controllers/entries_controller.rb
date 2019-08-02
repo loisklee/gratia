@@ -1,22 +1,31 @@
 class EntriesController < ApplicationController
 
-  # GET: /entries
-  get "/entries" do
-    erb :"/entries/index.html"
-  end
-
   # GET: /entries/new
   get "/entries/new" do
+    require_login
     erb :"/entries/new.html"
   end
 
   # POST: /entries
   post "/entries" do
-    redirect "/entries"
+		if params["gratitude1"] != "" && params["reflection1"] != "" && params["hopes1"] != ""
+			@entry = Entry.new(params)
+			@entry.user_id = session[:user_id]
+			is_current_user 
+			@entry.save
+			redirect "/entries/#{@entry.id}"
+		else
+			redirect '/entries/new'
+		end
   end
 
   # GET: /entries/5
   get "/entries/:id" do
+    require_login
+		@user = current_user
+		@entry = Entry.find_by_id(params[:id])
+		is_current_user 
+		@entry_date = @entry.convert_time
     erb :"/entries/show.html"
   end
 
