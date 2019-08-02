@@ -1,5 +1,10 @@
 class UsersController < ApplicationController
 
+  get '/welcome' do
+    @user = current_user
+    erb :welcome
+  end
+  
   # GET: /users
   get "/users" do
     erb :"/users/index.html"
