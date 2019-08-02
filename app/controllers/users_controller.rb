@@ -14,19 +14,20 @@ class UsersController < ApplicationController
     redirect to '/'
   end
   
+  get '/login' do
+    redirect to 'welcome' if logged_in?
+    erb :'users/login'
+  end
+
   # GET: /users
   get "/users" do
     erb :"/users/index.html"
   end
 
   # GET: /users/new
-  get "/users/new" do
+  get '/register' do
+    redirect to '/welcome' if logged_in?
     erb :"/users/new.html"
-  end
-
-  # POST: /users
-  post "/users" do
-    redirect "/users"
   end
 
   # GET: /users/5

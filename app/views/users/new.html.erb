@@ -1,1 +1,26 @@
-<h1>Insert the form to create a new instance of your model.</h1>
+<div class="banner">
+    <h2> create your account </h2>
+</div>
+
+<div class="wrapper">
+    <h3>welcome! please fill in the fields below:</h3>
+
+    <form action="/register" method="POST">
+        <input class="text" type="text" name="username" placeholder="Name" required=""><br>
+        <input class="text email" type="email" name="email" placeholder="Email Addess" required=""><br>
+        <input class="text" type="password" name="password" placeholder="Password" required="">
+        <br><br><br>
+        <input type="submit" value="Create my Account">
+        <br>
+    </form>
+    <br>
+
+<hr>
+    <h5>
+        <a href="/login">I already have an account</a>
+        <br>
+        <br>
+        <a href="/">Back to Home</a>
+    </h5>
+</div>
+
