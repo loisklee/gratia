@@ -1,0 +1,28 @@
+<div class="banner">
+    <h2><%=@user.username.capitalize%>'s notes</h2>
+</div>
+
+<br>
+<br>
+<h5>
+    <%@entries.each do |entry| %>
+            <%date = entry.convert_time%>
+            <a href='entries/<%=entry.id%>'><%= date %></a>
+            <br><br>
+    <%end%>
+</h5>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+<hr>
+
+<h5>
+<div class="right">
+    <a class ="foot" href="/welcome">Home</a> &nbsp;
+    <a class ="foot" href="/logout">Log Off</a></h5>
+
+</div>

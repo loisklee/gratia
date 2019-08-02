@@ -1,4 +1,11 @@
 class EntriesController < ApplicationController
+  
+  get '/collection' do
+		require_login
+		@user = current_user
+		@entries = @user.entries.sort_by(&:created_at)
+		erb :'entries/collection.html'
+	end
 
   # GET: /entries/new
   get "/entries/new" do
