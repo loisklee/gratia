@@ -24,11 +24,23 @@ class UsersController < ApplicationController
     erb :"/users/index.html"
   end
 
-  # GET: /users/new
   get '/register' do
     redirect to '/welcome' if logged_in?
     erb :"/users/new.html"
   end
+
+  post '/register' do
+    is_empty?(params, 'register')
+
+    if User.find_by(:email => params[:email])
+        flash[:message] = "(This email already exists. Please enter a new email or log in to continue.)"
+        redirect to '/register'
+    end
+
+    new_user = User.create(params)
+    session[:user_id] = new_user.id
+    redirect to '/welcome'
+end
 
   # GET: /users/5
   get "/users/:id" do
