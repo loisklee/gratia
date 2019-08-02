@@ -1,20 +1,19 @@
 class EntriesController < ApplicationController
-  
-  get '/collection' do
+
+	get '/collection' do
 		require_login
 		@user = current_user
+		# entries = Entry.where(user_id: session[:user_id])
 		@entries = @user.entries.sort_by(&:created_at)
-		erb :'entries/collection.html'
+		erb :'entries/collection'
 	end
 
-  # GET: /entries/new
-  get "/entries/new" do
-    require_login
-    erb :"/entries/new.html"
-  end
+	get "/entries/new" do
+		require_login
+		erb :"/entries/new"
+	end
 
-  # POST: /entries
-  post "/entries" do
+	post '/entries' do	
 		if params["gratitude1"] != "" && params["reflection1"] != "" && params["hopes1"] != ""
 			@entry = Entry.new(params)
 			@entry.user_id = session[:user_id]
@@ -24,30 +23,39 @@ class EntriesController < ApplicationController
 		else
 			redirect '/entries/new'
 		end
-  end
+	end
 
-  # GET: /entries/5
-  get "/entries/:id" do
-    require_login
+	get '/entries/:id' do
+		require_login
 		@user = current_user
 		@entry = Entry.find_by_id(params[:id])
 		is_current_user 
 		@entry_date = @entry.convert_time
-    erb :"/entries/show.html"
-  end
+		erb :'/entries/show'
+	end
 
-  # GET: /entries/5/edit
-  get "/entries/:id/edit" do
-    erb :"/entries/edit.html"
-  end
+	get '/entries/:id/edit' do
+		require_login
+		@entry = Entry.find_by_id(params[:id])
+		is_current_user 
+		@entry_date = @entry.convert_time
+		erb :'/entries/edit'
+	end
 
-  # PATCH: /entries/5
-  patch "/entries/:id" do
-    redirect "/entries/:id"
-  end
+	patch '/entries/:id' do
+		require_login		
+		@entry = Entry.find_by_id(params[:id])
+		is_current_user 
+		@entry.update(thoughts: params["thoughts"].strip, gratitude1: params["gratitude1"], gratitude2: params["gratitude2"], gratitude3: params["gratitude3"], gratitude4: params["gratitude4"], gratitude5: params["gratitude5"], reflection1: params["reflection1"], reflection2: params["reflection2"], reflection3: params["reflection3"], reflection4: params["reflection4"], reflection5: params["reflection5"], hopes1: params["hopes1"], hopes2: params["hopes2"], hopes3: params["hopes3"], hopes4: params["hopes4"], hopes5: params["hopes5"], user_id: current_user.id)				
+		redirect "/entries/show/#{@entry.id}"
+	end
 
-  # DELETE: /entries/5/delete
-  delete "/entries/:id/delete" do
-    redirect "/entries"
-  end
+	delete '/entries/:id/delete' do
+		require_login
+		@entry = Entry.find_by_id(params[:id])
+		is_current_user 
+		@entry.destroy
+		redirect '/collection'
+	end
+
 end
