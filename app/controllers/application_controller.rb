@@ -23,6 +23,21 @@ class ApplicationController < Sinatra::Base
 		
 		def current_user
 			@current_user ||= User.find_by(id: session[:user_id])
+    end
+    
+    def is_empty?(user_hash, route)
+			user_hash.each do |att, val|
+				if val.empty?
+					flash[:message] = "(Please complete all fields.)"
+					redirect to "/#{route}"
+				end
+			end
+    end
+    
+    def is_current_user
+			if !(@entry && @entry.user_id == current_user.id)
+				redirect '/welcome'
+			end
 		end
   end
 end
