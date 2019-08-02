@@ -1,5 +1,9 @@
 class UsersController < ApplicationController
 
+  get '/about'do
+    erb :about
+  end
+
   get '/welcome' do
     @user = current_user
     erb :welcome
