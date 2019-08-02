@@ -4,7 +4,9 @@
 
 <div class="wrapper">
     <h3>welcome! please fill in the fields below:</h3>
-
+    <%if flash.has?(:message)%>
+    	<h6><p style="color:#ED5C36;"><%= flash[:message]%></p></h6>
+    <%end%>
     <form action="/register" method="POST">
         <input class="text" type="text" name="username" placeholder="Name" required=""><br>
         <input class="text email" type="email" name="email" placeholder="Email Addess" required=""><br>
