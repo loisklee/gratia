@@ -4,6 +4,9 @@
 
 <div class ="wrapper">
     <h3>welcome back!</h3>
+    <%if flash.has?(:message)%>
+        <h6><p style="color:#ED5C36;"><%= flash[:message]%></p></h6>
+    <%end%>
     <form action="/login" method="POST">
         <input class="text email" type="email" name="email" placeholder="Email Addess" required="">
         <input class="text" type="password" name="password" placeholder="Password" required="">
