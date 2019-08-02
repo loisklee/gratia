@@ -9,6 +9,11 @@ class UsersController < ApplicationController
     erb :welcome
   end
   
+  get '/logout' do
+    session.clear
+    redirect to '/'
+  end
+  
   # GET: /users
   get "/users" do
     erb :"/users/index.html"
@@ -43,4 +48,5 @@ class UsersController < ApplicationController
   delete "/users/:id/delete" do
     redirect "/users"
   end
+  
 end
