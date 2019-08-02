@@ -1,5 +1,3 @@
-require 'pry'
-
 class UsersController < ApplicationController
     get '/about'do
         erb :about
