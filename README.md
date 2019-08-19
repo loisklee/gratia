@@ -1,6 +1,8 @@
 # gratia
 a Sinatra app built to log daily gratitude, reflections & intentions
 
+live version, here: https://de-gratia.herokuapp.com/
+
 ## Installation
 
 To add this gem, type in the command line:
